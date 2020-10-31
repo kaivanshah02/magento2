@@ -458,8 +458,8 @@ class Collection extends \Magento\Sales\Model\ResourceModel\Order\Collection
                         \Magento\Store\Model\ScopeInterface::SCOPE_STORE
                     )
                 );
-                $startMonth = isset($startMonthDay[0]) ? (int)$startMonthDay[0] : 1;
-                $startDay = isset($startMonthDay[1]) ? (int)$startMonthDay[1] : 1;
+                $startMonth = ($dateStart->format('m')) ?: (isset($startMonthDay[0]) ? (int)$startMonthDay[0] : 1);
+                $startDay = ($dateStart->format('d')) ?: (isset($startMonthDay[1]) ? (int)$startMonthDay[1] : 1);
                 $dateStart->setDate($dateStart->format('Y'), $startMonth, $startDay);
                 $dateStart->modify('-1 year');
                 if ($range == '2y') {
